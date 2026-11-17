@@ -1,0 +1,94 @@
+position,original_name,new_name,paper_number,paper_name,group,transformation,name_confidence,transform_confidence,in_dataset,notes
+1,Brazil CPI IPCA MoM,ipca_mom,1,Brazil CPI IPCA,prices,pct_change_mom,high,high,yes,Target variable. Jan/2003 = 2.25 matches IBGE.
+2,FGV Brazil General Prices IGP-,igpm_mom,2,FGV Brazil General Prices IGP-M,prices,pct_change_mom,high,high,yes,Jan/2003 = 2.33 matches the official IGP-M.
+3,FGV Brazil General Prices IGP-,igpdi_mom,3,FGV Brazil General Prices IGP-DI,prices,pct_change_mom,high,high,yes,Jan/2003 = 2.17 matches the official IGP-DI.
+4,FGV Brazil General Prices IGP-,fgv_igp_unknown,,,prices,unknown,low,low,yes,Not identified. Corr 0.95 with IGP-DI but ~2.7x its magnitude; possibly an FGV sub-index (e.g. IPA). Paper #4 (IGP-10) fits position 5 better.
+5,FGV Brazil General Prices IGP-,igp10_mom,4,FGV Brazil General Prices IGP-10,prices,pct_change_mom,medium,high,yes,Magnitude close to IGP-M/IGP-DI. Truncated name starts with FGV so it cannot be the IPCA-15 listed as paper #5.
+6,Brazil CPI IPCA Median Market,focus_ipca_12m_median,,,expectations,level,medium,high,yes,Not in the paper table (gap 6-13). Market median IPCA expectation; Jan/2003 = 11.56 suggests a 12-month / annual horizon.
+7,Brazil Total Electricity Consu,electricity_consumption_total,,,activity,level,high,high,yes,Not in the paper table. 0.0001 placeholder at 2011-04 (missing value).
+8,Brazil Industrial Electricity,electricity_consumption_ind,,,activity,first_diff,medium,medium,yes,Not in the paper table. Mean ~0 and 44% negative values.
+9,BofA Merrill Lynch Economic Co,bofa_economic_condition_idx,,,activity,level,medium,medium,yes,Not in the paper table. Truncated name probably 'Economic Condition' index.
+10,CNI Brazil Manufacture Industr,cni_capacity_util_diff,,,activity,first_diff,low,medium,yes,Not in the paper table. Feb/2003 = 80.6 (a level leaking into the first difference) suggests a differenced capacity-utilization series.
+11,CNI Brazil Manufacture Industr,cni_capacity_utilization,,,activity,level,medium,high,yes,Not in the paper table. Values 77-85 are typical of CNI capacity utilization (NUCI). 0.0001 placeholder at 2003-01.
+12,Brazil Industrial Production S,industrial_production_sa,,,activity,pct_change_mom,medium,medium,yes,Not in the paper table. Truncated 'S' probably seasonally adjusted.
+13,Brazil Industrial Production A,industrial_production_a,,,activity,unknown,low,low,yes,Not in the paper table. Meaning of truncated 'A' unknown; range -39 to 38 with near-zero autocorrelation.
+14,IBGE Brazil Unemployment Rate,unemployment_rate_ibge,14,IBGE Brazil Unemployment Rate,employment,first_diff,high,high,yes,
+15,Brazil Unemployment Statistic,unemployment_male,15,Brazil Unemployment Statistic Male,employment,first_diff,high,medium,yes,Identified by paper order.
+16,Brazil Unemployment Statistic,unemployment_total,16,Brazil Unemployment Statistic Total,employment,first_diff,high,medium,yes,Identified by paper order.
+17,IMF Brazil Unemployment Rate i,unemployment_rate_imf,17,IMF Brazil Unemployment Rate,employment,first_diff,high,high,yes,First row = 10.9 is a level (differencing artifact).
+18,CNI Brazil Manufacture Industr,cni_manufacturing_employment,18,CNI Brazil Manufacture Industry Employment,employment,first_diff,high,medium,yes,Feb/2003 = 91.1 is a level (differencing artifact).
+19,Brazil Industry Working Hours,industry_working_hours,19,Brazil Industry Working Hours,employment,first_diff,high,medium,yes,
+20,Brazil Average Real Income,average_real_income,,,employment,level,high,high,yes,Not in the paper table (gap 20-21).
+21,Brazil Minimum Wage,minimum_wage,,,employment,level,high,high,yes,Not in the paper table. BRL 200 (2003) to 788 (2015).
+22,USD-BRL X-RATE,usdbrl,22,USD-BRL X-RATE,exchange_finance,unknown,medium,low,yes,Identified by paper order. Range -52 to 64 is not a plain BRL difference; transformation unclear.
+23,USD-BRL X-RATE,usdbrl_tourism,23,USD-BRL X-RATE Tourism,exchange_finance,first_diff,medium,medium,yes,Identified by paper order.
+24,EUR-BRL X-RATE,eurbrl,24,EUR-BRL X-RATE,exchange_finance,first_diff,high,medium,yes,
+25,BRAZIL IBOVESPA INDEX,ibovespa,25,BRAZIL IBOVESPA INDEX,exchange_finance,first_diff,high,high,yes,Difference in index points.
+26,Brazil Savings Accounts Deposi,savings_deposits_rate,26,Brazil Savings Accounts Deposits,exchange_finance,level,medium,medium,yes,Values 0.41-1.05 look like the monthly savings yield (%).
+27,Brazil Total Savings Deposits,savings_deposits_total,27,Brazil Total Savings Deposits,exchange_finance,first_diff,high,medium,yes,
+28,Brazil BNDES Long Term Interes,tjlp,28,Brazil BNDES Long Term Interest Rate,exchange_finance,first_diff,high,high,yes,TJLP. 138 of 156 values are zero (rate rarely changes).
+29,Brazil Selic Target Rate,selic_target,29,Brazil Selic Target Rate,exchange_finance,first_diff,high,high,yes,Verified: cumulating from 25.0 reproduces the real Selic path (Dec/2015 = 14.25).
+30,Brazil Cetip DI Interbank Depo,cdi_rate,30,Brazil Cetip DI Interbank Deposits,exchange_finance,first_diff,high,high,yes,
+31,Brazil National Treasury Reven,treasury_revenue_total,32,Brazil National Treasury Revenue Total,government,level,high,medium,yes,From here on paper_number = position + 1 (the paper skips #31).
+32,Brazil Social Contribution ove,social_contrib_net_profit,33,Brazil Social Contribution over Net Profit Tax Income,government,pct_change_mom,high,low,yes,
+33,Brazil PIS & PASEP Tax Income,pis_pasep_tax,34,Brazil PIS & PASEP Tax Income,government,pct_change_mom,high,low,yes,
+34,Brazil Central Government Net,central_gov_net_revenue,35,Brazil Central Government Net Revenue,government,level,high,high,yes,
+35,Brazil Central Government Reve,central_gov_revenue_bcb,36,Brazil Central Government Revenue from the Central Bank,government,level,low,high,yes,Magnitude (18-122) is similar to total revenue; questionable for 'revenue from the Central Bank'.
+36,Brazil Central Government Tota,central_gov_total_expend,37,Brazil Central Government Total Expenditures,government,level,high,high,yes,
+37,Brazil National Treasury Gross,treasury_gross_revenue,38,Brazil National Treasury Gross Revenue,government,level,high,high,yes,
+38,Brazil Importing Tax Income No,importing_tax_income,39,Brazil Importing Tax Income,government,pct_change_mom,high,low,yes,
+39,BNDES Brazil Income Taxes UmBr,bndes_income_taxes,40,BNDES Brazil Income Taxes,government,unknown,high,low,yes,Very small values (-0.007 to 0.011).
+40,Brazil National Treasury Reven,treasury_rev_ipi,41,Brazil National Treasury Revenue from Industrialized Products,government,first_diff,medium,low,yes,Identified by paper order.
+41,Brazil National Treasury Reven,treasury_rev_other_taxes,42,Brazil National Treasury Revenues from Other Taxes,government,level,medium,medium,yes,Identified by paper order.
+42,Brazil Central Government Reve,central_gov_rev_social_sec,43,Brazil Central Government Revenue from the Social Security,government,level,medium,medium,yes,Identified by paper order.
+43,Brazil National Treasury Reven,treasury_rev_import_tax,44,Brazil National Treasury Revenue from Import Tax,government,unknown,medium,low,yes,Identified by paper order. Always positive with only 59 distinct values.
+44,Brazil Current Account Monthly,current_account,45,Brazil Current Account,international,first_diff,high,medium,yes,
+45,Brazil Trade Balance FOB Balan,trade_balance_fob,46,Brazil Trade Balance FOB,international,level,high,medium,yes,Possibly a 12-month accumulated balance.
+46,Brazil Public Net Fiscal Debt,public_net_debt_pct_gdp,47,Brazil Public Net Fiscal Debt % of GDP,government,first_diff,medium,medium,yes,Identified by paper order.
+47,Brazil Public Net Fiscal Debt,public_net_fiscal_debt,48,Brazil Public Net Fiscal Debt,government,unknown,medium,low,yes,Identified by paper order.
+48,Brazilian Federal Government D,federal_gov_domestic_debt,49,Brazilian Federal Government Domestic Debt,government,first_diff,high,medium,yes,First row = 15.91 looks like a differencing artifact.
+49,Brazil Public Net Government &,public_net_gov_bcb_debt,50,Brazil Public Net Government & Central Bank Domestic Debt,government,first_diff,high,medium,yes,
+50,Brazilian States Debt to Forei,states_debt_foreign_1,51,Brazilian States Debt Total Consolidated Net Debt,government,first_diff,low,medium,yes,Conflict: the paper name says 'Total Consolidated' but the truncated name says 'to Forei...'. Also smaller magnitude than position 51.
+51,Brazilian States Debt to Forei,states_debt_foreign_2,52,Brazilian States Debt to Foreigners,government,first_diff,low,medium,yes,See position 50.
+52,Brazilian Cities Debt to Forei,cities_debt_foreign_1,53,Brazilian Cities Debt,government,first_diff,low,medium,yes,Conflict: the paper name says 'Cities Debt' but the truncated name says 'to Forei...'.
+53,Brazilian Cities Debt to Forei,cities_debt_foreign_2,54,Brazilian Cities Debt to Foreigners,government,first_diff,low,medium,yes,See position 52. 113 of 156 values are zero.
+54,Brazil Monetary Base,monetary_base,55,Brazil Monetary Base,money,level,high,high,yes,
+55,Brazil Money Supply M1 Brazil,m1,56,Brazil Money Supply M1 Brazil,money,first_diff,high,low,yes,
+56,Brazil Money Supply M2 Brazil,m2,57,Brazil Money Supply M2 Brazil,money,unknown,high,low,yes,
+57,Brazil Money Supply M3 Brazil,m3,58,Brazil Money Supply M3 Brazil,money,unknown,high,low,yes,
+58,Brazil Money Supply M4 Brazil,m4,59,Brazil Money Supply M4 Brazil,money,unknown,high,low,yes,
+59,t.1,focus_med_t1,60,t+1 median,expectations,level,high,high,yes,FOCUS median. Row t holds the forecast of the IPCA in the same row t (corr 0.96).
+60,t.2,focus_med_t2,61,t+2 median,expectations,level,high,high,yes,
+61,t.3,focus_med_t3,62,t+3 median,expectations,level,high,high,yes,
+62,t.4,focus_med_t4,63,t+4 median,expectations,level,high,high,yes,
+63,t.5,focus_med_t5,64,t+5 median,expectations,level,high,high,yes,
+64,t.6,focus_med_t6,65,t+6 median,expectations,level,high,high,yes,
+65,t.7,focus_med_t7,66,t+7 median,expectations,level,high,high,yes,
+66,t.8,focus_med_t8,67,t+8 median,expectations,level,high,high,yes,
+67,t.9,focus_med_t9,68,t+9 median,expectations,level,high,high,yes,
+68,t.10,focus_med_t10,69,t+10 median,expectations,level,high,high,yes,
+69,t.11,focus_med_t11,70,t+11 median,expectations,level,high,high,yes,
+70,t.12,focus_med_t12,71,t+12 median,expectations,level,high,high,yes,
+71,t.13,focus_med_t13,72,t+13 median,expectations,level,high,high,yes,
+72,X5t.1,focus_top5_med_t1,73,Top5 t+1 median,expectations,level,high,high,yes,Top5 = the five most accurate forecasters in the previous period.
+73,X5t.2,focus_top5_med_t2,74,Top5 t+2 median,expectations,level,high,high,yes,
+74,X5t.3,focus_top5_med_t3,75,Top5 t+3 median,expectations,level,high,high,yes,
+75,X5t.4,focus_top5_med_t4,76,Top5 t+4 median,expectations,level,high,high,yes,
+76,X5t.5,focus_top5_med_t5,77,Top5 t+5 median,expectations,level,high,high,yes,
+77,X5t.6,focus_top5_med_t6,78,Top5 t+6 median,expectations,level,high,high,yes,
+78,X5t.7,focus_top5_med_t7,79,Top5 t+7 median,expectations,level,high,high,yes,
+79,X5t.8,focus_top5_med_t8,80,Top5 t+8 median,expectations,level,high,high,yes,
+80,X5t.9,focus_top5_med_t9,81,Top5 t+9 median,expectations,level,high,high,yes,
+81,X5t.10,focus_top5_med_t10,82,Top5 t+10 median,expectations,level,high,high,yes,
+82,X5t.11,focus_top5_med_t11,83,Top5 t+11 median,expectations,level,high,high,yes,
+83,X5t.12,focus_top5_med_t12,84,Top5 t+12 median,expectations,level,high,high,yes,
+84,X5t.13,focus_top5_med_t13,85,Top5 t+13 median,expectations,level,high,high,yes,
+85,fmed2,focus_med_t1_sq,86,t+1 median^2,expectations,level,high,high,yes,Verified: equals focus_med_t1 squared.
+86,fmean,focus_mean_t1,87,t+1 mean,expectations,level,high,high,yes,
+87,fmean2,focus_mean_t1_sq,88,t+1 mean^2,expectations,level,high,high,yes,Verified: equals focus_mean_t1 squared.
+88,fdp,focus_std_t1,89,t+1 Std,expectations,level,high,high,yes,
+89,lfmed2,focus_med_t2_sq,90,t+12 median^2,expectations,level,high,high,yes,Verified: equals focus_med_t2 squared. The paper's 't+12' is a typo for t+2.
+90,lfmean,focus_mean_t2,91,t+2 mean,expectations,level,high,high,yes,
+91,lfmean2,focus_mean_t2_sq,92,t+2 mean^2,expectations,level,high,high,yes,Verified: equals focus_mean_t2 squared.
+92,lfdp,focus_std_t2,93,t+2 Std,expectations,level,high,high,yes,
+,,,5,Brazil CPI IPCA-15,prices,,,,no,Documentation only: listed in the paper but not present in BRinf.rda (all four columns at positions 2-5 are FGV indexes).
