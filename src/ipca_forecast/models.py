@@ -1,5 +1,8 @@
 """Model definitions: benchmarks (RW, AR) and scikit-learn models (LASSO, RF, factors, CSR)."""
 
+import itertools
+
+import numpy as np
 import pandas as pd
 import sklearn
 
@@ -19,3 +22,22 @@ def make_models(X_train, y_train, X_test, y_test, h):
     rmse_lassoCV = sklearn.metrics.root_mean_squared_error(y_test, lassoCV_predictions)
 
     return mae_lassoCV, rmse_lassoCV, lassoCV_predictions
+
+
+def run_csr(X_train, y_train, X_test, y_test, n_vars=25, k=4):
+    top_vars = X_train.corrwith(y_train).sort_values(key=abs, ascending=False).iloc[:n_vars].index
+
+    predictions = []
+
+    for group in itertools.combinations(top_vars, k):
+        cols = list(group)
+
+        model = sklearn.linear_model.LinearRegression()
+        model.fit(X_train[cols], y_train)
+        predictions.append(model.predict(X_test[cols]))
+
+    csr_predictions = np.array(predictions).mean(axis=0)
+    mae_csr = sklearn.metrics.mean_absolute_error(y_test, csr_predictions)
+    rmse_csr = sklearn.metrics.root_mean_squared_error(y_test, csr_predictions)
+
+    return mae_csr, rmse_csr, csr_predictions
