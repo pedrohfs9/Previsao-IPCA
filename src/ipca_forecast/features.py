@@ -18,3 +18,17 @@ def train_preparation(df, h):
     y_test = df_test["ipca_target_month"]
 
     return X_train, y_train, X_test, y_test
+
+
+def add_lags(df, n_lags=4):
+    frames = [df]
+
+    for lag in range(1, n_lags+1):
+        lagged = df.shift(lag).add_suffix(f"_lag{lag}")
+        frames.append(lagged)
+
+    df_lagged = pd.concat(frames, axis=1)
+
+    df_lagged = df_lagged.dropna()
+
+    return df_lagged
