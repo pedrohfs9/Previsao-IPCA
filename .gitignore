@@ -28,6 +28,9 @@ models/*
 !models/.gitkeep
 reports/figures/*
 !reports/figures/.gitkeep
+# Charts shown in the README
+!reports/figures/csr_lags_real_vs_pred_h1.png
+!reports/figures/csr_lags_real_vs_pred_h3.png
 reports/tables/*
 !reports/tables/.gitkeep
 
