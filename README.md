@@ -1,5 +1,21 @@
 # IPCA Forecast — High-Dimensional Models for Brazilian Inflation
 
+Forecasting Brazil's monthly inflation (IPCA) 1 to 12 months ahead from ~90 economic indicators,
+and comparing the forecasts with the FOCUS survey, the market consensus published by the
+Central Bank of Brazil.
+
+**Main result:** a complete subset regression (CSR) with 1–4 month lags beats the FOCUS
+survey median at every horizon from 1 to 12 months, with an RMSE 4–10% lower. A cross-validated
+LASSO does not beat FOCUS at any horizon.
+
+![CSR with lags vs actual IPCA, 1 month ahead](reports/figures/csr_lags_real_vs_pred_h1.png)
+
+One month ahead, the CSR forecast (orange) follows the actual monthly IPCA (blue) closely over
+the 45 test months, April 2012 – December 2015. It catches the direction of almost every move,
+but it is smoother than reality and misses the most extreme months.
+
+## About the project
+
 A Python / scikit-learn study based on:
 
 > Garcia, M. G. P., Medeiros, M. C., & Vasconcelos, G. F. R. (2017).
@@ -15,10 +31,6 @@ FOCUS market survey.
 This project leaves most of the economics aside and treats the paper as an end-to-end
 **machine learning project**: clean the original data, build horizon-shifted targets and lagged
 features, fit models for each horizon, and compare them against the FOCUS survey.
-
-**Main result:** a complete subset regression (CSR) with 1–4 month lags beats the FOCUS
-survey median at every horizon from 1 to 12 months, with an RMSE 4–10% lower. A cross-validated
-LASSO does not beat FOCUS at any horizon.
 
 ## Method
 
@@ -87,6 +99,17 @@ The test forecasts cover the IPCA from April–July 2012 (depending on `h`) to D
 
 RMSE is in percentage points of monthly IPCA (the sample mean is 0.49% per month).
 
+### Forecasts vs actual IPCA
+
+The chart at the top of this page shows the 1-month forecast. The chart below shows the
+3-month forecast over the same 45 months (April 2012 – December 2015). Both follow the direction
+of inflation well, but they are smoother than the actual series: averaging thousands of
+regressions pulls the forecast toward the middle, so it misses the highest and lowest months.
+The largest miss is the early-2015 spike in regulated prices (electricity and fuel): the 1-month
+forecast reaches about 1.1%, while the 3-month forecast stays below 0.8%.
+
+![CSR with lags vs actual IPCA, 3 months ahead](reports/figures/csr_lags_real_vs_pred_h3.png)
+
 ### Conclusions
 
 - **The CSR beats FOCUS at every horizon.** Averaging thousands of small regressions uses
@@ -139,7 +162,8 @@ Previsao-IPCA/
 │   └── selection.py      # Placeholder, not used yet
 ├── references/
 │   └── data_dictionary.csv   # Column names, paper variable numbers, inferred transformations
-├── scripts/  models/  reports/  tests/   # Empty, reserved for future work
+├── reports/figures/      # Forecast vs actual charts used in this README
+├── scripts/  models/  tests/   # Empty, reserved for future work
 ├── pyproject.toml        # Project metadata and dependencies (managed by uv)
 └── README.md
 ```
